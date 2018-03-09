@@ -280,17 +280,7 @@ def train():
       validation_examples=validation_examples,
       validation_targets=validation_targets)
 
-  #classifier.export_savedmodel(export_dir_base='./data/', serving_input_receiver_fn=serving_input_receiver_fn)
-
   return classifier
-
-def serving_input_receiver_fn():
-  serialized_tf_example = tf.placeholder(dtype=tf.string, shape=[None], name='input_tensors')
-  receiver_tensors      = {"predictor_inputs": serialized_tf_example}
-  feature_spec          = {"pixels": tf.FixedLenFeature([784],tf.int64)}
-  features              = tf.parse_example(serialized_tf_example, feature_spec)
-  # tf.estimator.export.build_parsing_serving_input_receiver_fn
-  return tf.estimator.export.ServingInputReceiver(features, receiver_tensors)
 
 # In[ ]:
 def make_estimator(model_dir, hidden_units, learning_rate):

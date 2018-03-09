@@ -49,12 +49,11 @@ while rval:
 
         rand_example = np.random.choice(te.index)
         _, ax = plt.subplots()
-        #ax.matshow(te.loc[rand_example].values.reshape(28, 28))
+        ax.matshow(te.loc[rand_example].values.reshape(28, 28))
         #ax.matshow(rf)
-        cv2.imshow("cropped", resized_frame)
         ax.set_title("Label: 1")
         ax.grid(False)
-        #plt.show()
+        plt.show()
 
     	print nn.predict_class(tt, te, classifier)
     	counter = 0
